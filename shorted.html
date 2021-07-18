@@ -17,7 +17,7 @@
 				<h1 class="flex-grow sm:pr-16 text-2xl font-medium title-font text-white">Knot URL<br>
 					<span style="font-size: 14px;" id="shortened"></span>
 				</h1>
-				<button class="flex-shrink-0 text-white bg-blue-500 border-0 py-1 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg mt-10 sm:mt-0" onclick="window.location.href = '/'">Create New</button>
+				<button class="flex-shrink-0 text-white bg-blue-500 border-0 py-1 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg mt-10 sm:mt-0" onclick="window.location.href = '/knot/'">Create New</button>
 			</div>
 		</div>
 	</section>
@@ -36,7 +36,7 @@
 			var sourceUrl = "https://cttricks.github.io/knot/load.html?sl="
 			document.getElementById("shortened").innerHTML = sourceUrl + localStorage.getItem("alias");
 		} else {
-			window.location.href = "/";
+			window.location.href = "/knot/";
 		}
 	</script>
 </body>
