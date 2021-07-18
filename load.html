@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+	<title>Knot - URL Shortner Made By Using Google Form &amp; Spreadsheet</title>
+	<link rel="icon" href="knot.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body class="bg-gray-900">
+	<section class="text-gray-400 bg-gray-900 body-font">
+		<div class="container px-5 py-44 mx-auto">
+			<div class="flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+				<h1 class="flex-grow sm:pr-16 text-2xl font-medium title-font text-white" id="statustext">Loading URL...<br><span style="font-size: 14px; font-weight: 400">It won't take much time. Please wait!</span></h1>
+			</div>
+		</div>
+	</section>
+	<footer class="text-gray-400 bg-gray-900 body-font">
+		<div class="bg-gray-900 bg-opacity-90">
+			<div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+				<p class="text-gray-400 text-sm text-center sm:text-left">© 2021 KNOT —
+					<a href="https://twitter.com/ct_tricks" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@ct_tricks</a>
+				</p>
+				<span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-400 text-sm">Easy to use | Customized URLs | No Logs or History</span>
+			</div>
+		</div>
+	</footer>
+	<script>
+		const baseID = "1oowxLPIvwnAs8_4OywgGDWp1omirKtZAO1ZbgXpFZpA";
+		const page = new URL(window.location.href);
+		const baseName = "SL";
+		if(page.searchParams.get("sl")){
+			console.log(page.searchParams.get("sl"));
+			var url = "https://docs.google.com/spreadsheets/d/"+baseID+"/gviz/tq?tqx=out:json&sheet="+baseName+"&tq=" + encodeURIComponent("SELECT B WHERE C ='" + page.searchParams.get("sl") + "'");
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("GET", url, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						var response = this.responseText.replace("/*O_o*/","");
+						response = response.replace("google.visualization.Query.setResponse\(", "");
+						response = response.replace("\);", "");
+						response = JSON.parse(response);
+						response = response["table"]["rows"];
+						if(response.length >0){
+							//window.location.replace(response[0]['c'][0]['v']);
+							console.log(response[0]['c'][0]['v']);
+						}
+					}else{
+						document.getElementById("statustext").innerHTML = 'Invalid URL...<br><span style="font-size: 14px; font-weight: 400">Please Check your url and try again</span>';
+					}
+				}
+			}
+		}else{
+			document.getElementById("statustext").innerHTML = 'Invalid URL...<br><span style="font-size: 14px; font-weight: 400">Please check your url and try again</span>';
+		}
+	</script>
+</body>
+
+</html>

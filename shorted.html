@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="icon" href="knot.png">
+	<title>Knot - URL Shortner Made By Using Google Form &amp; Spreadsheet</title>
+</head>
+
+<body class="bg-gray-900">
+	<section class="text-gray-400 bg-gray-900 body-font">
+		<div class="container px-5 py-44 mx-auto">
+			<div class="flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+				<h1 class="flex-grow sm:pr-16 text-2xl font-medium title-font text-white">Knot URL<br>
+					<span style="font-size: 14px;" id="shortened"></span>
+				</h1>
+				<button class="flex-shrink-0 text-white bg-blue-500 border-0 py-1 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg mt-10 sm:mt-0" onclick="window.location.href = '/'">Create New</button>
+			</div>
+		</div>
+	</section>
+	<footer class="text-gray-400 bg-gray-900 body-font">
+		<div class="bg-gray-900 bg-opacity-90">
+			<div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+				<p class="text-gray-400 text-sm text-center sm:text-left">© 2021 KNOT —
+					<a href="https://twitter.com/ct_tricks" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@ct_tricks</a>
+				</p>
+				<span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-400 text-sm">Easy to use | Customized URLs | No Logs or History</span>
+			</div>
+		</div>
+	</footer>
+	<script>
+		if (localStorage.getItem("alias") !== null) {
+			var sourceUrl = "https://cttricks.github.com/knot/load.html?sl="
+			document.getElementById("shortened").innerHTML = sourceUrl + localStorage.getItem("alias");
+		} else {
+			window.location.href = "/";
+		}
+	</script>
+</body>
+
+</html>
