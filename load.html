@@ -49,8 +49,8 @@
 						response = JSON.parse(response);
 						response = response["table"]["rows"];
 						if(response.length >0){
-							//window.location.replace(response[0]['c'][0]['v']);
-							console.log(response[0]['c'][0]['v']);
+							window.location.replace(response[0]['c'][0]['v']);
+							//console.log(response[0]['c'][0]['v']);
 						}
 					}else{
 						document.getElementById("statustext").innerHTML = 'Invalid URL...<br><span style="font-size: 14px; font-weight: 400">Please Check your url and try again</span>';
